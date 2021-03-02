@@ -1,9 +1,13 @@
 package com.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Customer {
@@ -13,33 +17,27 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private String country;
-	private String state;
-	private String city;
-	private String Address;
-	private long pincode;
+	private String address;
 	private String emailId;
 	private long phoneNumber;
 
 	@Column(unique = true)
 	private String loginId;
 	private String password;
+//
+//	@OneToMany(mappedBy = "customer")
+//	List<Order> orders = new ArrayList<Order>();
 
 	public Customer() {
 	}
 
-	public Customer(String firstName, String lastName, String gender, String country, String state,
-			String city, String address, long pincode, String emailId, long phoneNumber, String loginId,
-			String password) {
+	public Customer(String firstName, String lastName, String gender, String address, String emailId,
+			long phoneNumber, String loginId, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
-		this.country = country;
-		this.state = state;
-		this.city = city;
-		Address = address;
-		this.pincode = pincode;
+		this.address = address;
 		this.emailId = emailId;
 		this.phoneNumber = phoneNumber;
 		this.loginId = loginId;
@@ -78,20 +76,12 @@ public class Customer {
 		this.gender = gender;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getEmailId() {
@@ -126,36 +116,11 @@ public class Customer {
 		this.password = password;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getAddress() {
-		return Address;
-	}
-
-	public void setAddress(String address) {
-		Address = address;
-	}
-
-	public long getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(long pincode) {
-		this.pincode = pincode;
-	}
-
 	@Override
 	public String toString() {
 		return "Customer [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
-				+ gender + ", country=" + country + ", state=" + state + ", city=" + city + ", Address=" + Address
-				+ ", pincode=" + pincode + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber + ", loginId="
-				+ loginId + ", password=" + password + "]";
+				+ gender + ", address=" + address + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber
+				+ ", loginId=" + loginId + ", password=" + password + ", orders= ]";
 	}
 
 }

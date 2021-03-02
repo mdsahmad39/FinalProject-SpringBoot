@@ -3,9 +3,9 @@ package com.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.dto.Items;
+import com.dto.Product;
 
 @Repository
-public interface ItemsRepository extends JpaRepository<Items, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dao.CustomerDao;
+import com.dto.Address;
 import com.dto.Customer;
 
 @RestController
@@ -21,10 +22,20 @@ public class CustomerController {
 	public void register(@RequestBody Customer customer) {
 		customerDao.register(customer);
 	}
+//	
+//	private String houseNo;
+//	private String street;
+//	private String city;
+//	private long pincode;
+//	private String state;
+//	private String country;
 	
 	@GetMapping("/register")
 	public void register() {
-		Customer customer = new Customer("Ali", "Ahmad", "male", "India", "AP", "HYD", "5-34-23, Bantumilli", 321123, "hello@gmail.com", 9848012345l, "aliali12", "password");
+		Address address = new Address("3-38", "Gachibowli", "HYD", 342423, "TG", "India");
+		System.out.println(address.toString());
+		String myaddress = address.toString();
+		Customer customer = new Customer("ahmad", "ali", "male", myaddress, "hello@gmail.com", 8989898989l, "ahmad12", "password");
 		customerDao.register(customer);
 	}
 	

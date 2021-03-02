@@ -9,43 +9,38 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity
+//@Entity
 public class Store {
 	@Id
 	@GeneratedValue
 	private int storeId;
 	private String storeName;
 	private String sellerName;
-	private String country;
-	private String state;
-	private String city;
-	private String address;
-	private long pincode;
+	private Address address;
 	private long phone;
 	private String emailId;
 
 	@Column(unique = true)
 	private String loginId;
 	private String password;
+//
+//	@OneToMany(mappedBy = "store")
+//	List<Items> items = new ArrayList<Items>();
 
 	@OneToMany(mappedBy = "store")
-	List<Items> items = new ArrayList<Items>();
+	List<Order> orders = new ArrayList<Order>();
 
 	public Store() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Store(String storeName, String sellerName, String country, String state, String city, String address,
-			long pincode, long phone, String emailId, String loginId, String password) {
+	public Store(String storeName, String sellerName, Address address, long phone, String emailId, String loginId,
+			String password) {
 		super();
 		this.storeName = storeName;
 		this.sellerName = sellerName;
-		this.country = country;
-		this.state = state;
-		this.city = city;
 		this.address = address;
-		this.pincode = pincode;
 		this.phone = phone;
 		this.emailId = emailId;
 		this.loginId = loginId;
@@ -76,44 +71,12 @@ public class Store {
 		this.sellerName = sellerName;
 	}
 
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
-	}
-
-	public long getPincode() {
-		return pincode;
-	}
-
-	public void setPincode(long pincode) {
-		this.pincode = pincode;
 	}
 
 	public long getPhone() {
@@ -148,20 +111,19 @@ public class Store {
 		this.password = password;
 	}
 
-	public List<Items> getItems() {
-		return items;
+	public List<Order> getOrders() {
+		return orders;
 	}
 
-	public void setItems(List<Items> items) {
-		this.items = items;
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	@Override
 	public String toString() {
-		return "Store [storeId=" + storeId + ", storeName=" + storeName + ", sellerName=" + sellerName + ", country="
-				+ country + ", state=" + state + ", city=" + city + ", address=" + address + ", pincode=" + pincode
-				+ ", phone=" + phone + ", emailId=" + emailId + ", loginId=" + loginId + ", password=" + password
-				+ ", items=" + items + "]";
+		return "Store [storeId=" + storeId + ", storeName=" + storeName + ", sellerName=" + sellerName + ", address="
+				+ address + ", phone=" + phone + ", emailId=" + emailId + ", loginId=" + loginId + ", password="
+				+ password + ", items="  + ", orders=" + orders + "]";
 	}
 
 }
