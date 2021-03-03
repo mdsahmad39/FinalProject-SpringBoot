@@ -25,9 +25,9 @@ public class Orders {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	Customer customer;
-	
-	@OneToMany(mappedBy="orders")
-	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
+
+//	@OneToMany(mappedBy = "orders")
+//	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 
 	public Orders() {
 		super();

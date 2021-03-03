@@ -23,7 +23,25 @@ public class CustomerController {
 	AddressDao addressDao;
 	
 	@PostMapping("/register_customer")
-	public void register(@RequestBody Customer customer) {
+	public void register(@RequestBody String response) {
+		response.replaceAll("\"", "");
+		String[] arr = response.split(",");
+		String firstName = arr[0].replaceAll("\"", "").split(":")[1];
+		String lastName = arr[1].replaceAll("\"", "").split(":")[1];
+		String gender = arr[2].replaceAll("\"", "").split(":")[1];
+		String houseNo = arr[3].replaceAll("\"", "").split(":")[1];
+		String street = arr[4].replaceAll("\"", "").split(":")[1];
+		String city = arr[5].replaceAll("\"", "").split(":")[1];
+		long pincode = Long.parseLong(arr[6].replaceAll("\"", "").split(":")[1]);
+		String state = arr[7].replaceAll("\"", "").split(":")[1];
+		String country = arr[8].replaceAll("\"", "").split(":")[1];
+		String emailId = arr[9].replaceAll("\"", "").split(":")[1];
+		long phoneNumber = Long.parseLong(arr[10].replaceAll("\"", "").split(":")[1]);
+		String loginId = arr[11].replaceAll("\"", "").split(":")[1];
+		String password = arr[12].replaceAll("\"", "").split(":")[1];
+		Address address = new Address(houseNo, street, city, pincode, state, country);
+		addressDao.register(address);
+		Customer customer = new Customer(firstName, lastName, gender, address, emailId, phoneNumber, loginId, password);
 		customerDao.register(customer);
 	}
 //	
