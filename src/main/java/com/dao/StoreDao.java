@@ -20,4 +20,8 @@ public class StoreDao {
 	public List<Store> getAllStores(){
 		return storeRepository.findAll();
 	}
+
+	public Store verfiyStore(String loginId, String password) {
+		return storeRepository.findByLoginIdAndPassword(loginId, password);
+	}
 }

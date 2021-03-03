@@ -8,4 +8,6 @@ import com.dto.Store;
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Integer> {
 
+	Store findByLoginIdAndPassword(String loginId, String password);
+
 }

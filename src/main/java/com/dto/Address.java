@@ -1,6 +1,14 @@
 package com.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Address {
+	@Id
+	@GeneratedValue
+	private int addressId;
 	private String houseNo;
 	private String street;
 	private String city;
@@ -10,8 +18,21 @@ public class Address {
 
 	public Address() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
+	
+//	public Address(String address)
+//	{
+//		super();
+//		String[] arr =address.toString().replace("},{","").replace("],[","").split(" ");
+//		this.houseNo=arr[0].substring(arr[0].indexOf('=')+1);
+//		this.street=arr[1].substring(arr[1].indexOf('=')+1);
+//		this.city=arr[2].substring(arr[2].indexOf('=')+1);
+//		this.pincode=arr[3].substring(arr[3].indexOf('=')+1);
+//		this.state=arr[4].substring(arr[4].indexOf('=')+1);
+//		this.country=arr[5].substring(arr[5].indexOf('=')+1);
+//		
+//	}
 
 	public Address(String houseNo, String street, String city, long pincode, String state, String country) {
 		super();
@@ -73,8 +94,9 @@ public class Address {
 
 	@Override
 	public String toString() {
-		return "Address [houseNo=" + houseNo + ", street=" + street + ", city=" + city + ", pincode=" + pincode
-				+ ", state=" + state + ", country=" + country + "]";
+		return "houseNo=" + houseNo + " street=" + street + " city=" + city + " pincode=" + pincode + " state=" + state
+				+ " country=" + country + "";
+
 	}
 
 }

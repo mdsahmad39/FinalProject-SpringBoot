@@ -1,5 +1,7 @@
 package com.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,10 @@ public class CustomerDao {
 	
 	public Customer verifyCustomerInfo(String loginId, String password) {
 		return customerRepository.findByLoginIdAndPassword(loginId, password);
+	}
+
+	public List<Customer> getAllCustomers() {
+		return customerRepository.findAll();
 	}
 	
 }

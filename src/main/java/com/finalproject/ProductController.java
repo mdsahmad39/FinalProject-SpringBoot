@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,27 +54,9 @@ public class ProductController //implements ErrorController
 	@GetMapping("register_item")
 	public void register() {
 		List<Store> storeList = storeDao.getAllStores();
-		Product item1 = null;
-		try {
-			item1 = new Product("Flour",78.83,"Food", new SimpleDateFormat("dd/MM/yyyy").parse("25/01/2021"), storeList.get(0));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Product item2 = null;
-		try {
-			item2 = new Product("Rice", 888.83,"Food", new SimpleDateFormat("dd/MM/yyyy").parse("21/09/2021"), storeList.get(1));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Product item3 = null;
-		try {
-			item3 = new Product("Oil", 7118.83,"Food", new SimpleDateFormat("dd/MM/yyyy").parse("15/10/2021"), storeList.get(0));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Product item1 = new Product("Rice", "Kitchen", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(0));
+		Product item2 = new Product("Wheat", "Kitchen", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(1));
+		Product item3 = new Product("Eggs", "Kitchen", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(0));
 		
 		productDao.register(item1);
 		productDao.register(item2);
@@ -80,7 +64,12 @@ public class ProductController //implements ErrorController
 	}
 	
 	@GetMapping("get_all_items")
-	public List<Product> getAllItems(){
-		return productDao.getAllItems();
+	public List<Product> getAllProducts(){
+		return productDao.getAllProducts();
+	}
+	
+	@RequestMapping("get_products_by_store/{storeId}")
+	public List<Product> getProductsByStore(@PathVariable("storeId") String storeId){
+		return productDao.getProductsByStoreId(storeId);
 	}
 }

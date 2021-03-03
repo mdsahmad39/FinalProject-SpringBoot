@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dao.AddressDao;
 import com.dao.CustomerDao;
 import com.dto.Address;
 import com.dto.Customer;
@@ -17,6 +18,9 @@ public class CustomerController {
 
 	@Autowired
 	CustomerDao customerDao;
+	
+	@Autowired
+	AddressDao addressDao;
 	
 	@PostMapping("/register_customer")
 	public void register(@RequestBody Customer customer) {
@@ -33,9 +37,8 @@ public class CustomerController {
 	@GetMapping("/register")
 	public void register() {
 		Address address = new Address("3-38", "Gachibowli", "HYD", 342423, "TG", "India");
-		System.out.println(address.toString());
-		String myaddress = address.toString();
-		Customer customer = new Customer("ahmad", "ali", "male", myaddress, "hello@gmail.com", 8989898989l, "ahmad12", "password");
+		addressDao.register(address);
+		Customer customer = new Customer("ahmad", "ali", "male", address, "hello@gmail.com", 8989898989l, "ahmad12", "password");
 		customerDao.register(customer);
 	}
 	

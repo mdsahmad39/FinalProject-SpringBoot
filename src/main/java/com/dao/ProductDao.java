@@ -17,7 +17,11 @@ public class ProductDao {
 		productRepository.save(product);
 	}
 	
-	public List<Product> getAllItems(){
+	public List<Product> getAllProducts(){
 		return productRepository.findAll();
+	}
+
+	public List<Product> getProductsByStoreId(String storeId) {
+		return productRepository.findByStoreId(storeId);
 	}
 }

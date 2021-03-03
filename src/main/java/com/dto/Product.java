@@ -1,38 +1,51 @@
 package com.dto;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 
 @Entity
-public class Product{
+public class Product {
 	@Id
 	@GeneratedValue
 	private int productId;
 	private String productName;
 	private String category;
+	private double weight;
+	private int availableQuantity;
 	private double price;
-	private Date modelYear;
-	
+	private String createdDate;
+	private String expiryDate;
+
 	@ManyToOne
-	@JoinColumn(name="store_id")
+	@JoinColumn(name = "store_id")
 	Store store;
+
+	@OneToMany(mappedBy = "product")
+	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(String productName,double price, String category, Date modelYear, Store store) {
+	public Product(String productName, String category, double weight, int availableQuantity, double price,
+			String createdDate, String expiryDate, Store store) {
 		super();
 		this.productName = productName;
 		this.category = category;
+		this.weight = weight;
+		this.availableQuantity = availableQuantity;
 		this.price = price;
-		this.modelYear = modelYear;
+		this.createdDate = createdDate;
+		this.expiryDate = expiryDate;
 		this.store = store;
 	}
 
@@ -60,6 +73,22 @@ public class Product{
 		this.category = category;
 	}
 
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
+	}
+
+	public int getAvailableQuantity() {
+		return availableQuantity;
+	}
+
+	public void setAvailableQuantity(int availableQuantity) {
+		this.availableQuantity = availableQuantity;
+	}
+
 	public double getPrice() {
 		return price;
 	}
@@ -68,12 +97,20 @@ public class Product{
 		this.price = price;
 	}
 
-	public Date getModelYear() {
-		return modelYear;
+	public String getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setModelYear(Date modelYear) {
-		this.modelYear = modelYear;
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(String expiryDate) {
+		this.expiryDate = expiryDate;
 	}
 
 	public Store getStore() {
@@ -84,12 +121,20 @@ public class Product{
 		this.store = store;
 	}
 
+	public List<OrderDetails> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetails> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", category=" + category
-				+ ", price=" + price + ", modelYear=" + modelYear + ", store=" + store + "]";
+				+ ", weight=" + weight + ", availableQuantity=" + availableQuantity + ", price=" + price
+				+ ", createdDate=" + createdDate + ", expiryDate=" + expiryDate + ", store=" + store + ", orderDetails="
+				+ orderDetails + "]";
 	}
 
-	
-	
 }

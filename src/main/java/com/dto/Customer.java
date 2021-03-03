@@ -7,7 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer {
@@ -17,21 +19,24 @@ public class Customer {
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private String address;
 	private String emailId;
 	private long phoneNumber;
 
 	@Column(unique = true)
 	private String loginId;
 	private String password;
-//
-//	@OneToMany(mappedBy = "customer")
-//	List<Order> orders = new ArrayList<Order>();
+	
+	@OneToOne
+	@JoinColumn(name="address_id")
+	Address address;
+
+	@OneToMany(mappedBy = "customer")
+	List<Orders> orders = new ArrayList<Orders>();
 
 	public Customer() {
 	}
 
-	public Customer(String firstName, String lastName, String gender, String address, String emailId,
+	public Customer(String firstName, String lastName, String gender, Address address, String emailId,
 			long phoneNumber, String loginId, String password) {
 		super();
 		this.firstName = firstName;
@@ -76,11 +81,11 @@ public class Customer {
 		this.gender = gender;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
@@ -119,8 +124,10 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", gender="
-				+ gender + ", address=" + address + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber
-				+ ", loginId=" + loginId + ", password=" + password + ", orders= ]";
+				+ gender + ", emailId=" + emailId + ", phoneNumber=" + phoneNumber + ", loginId=" + loginId
+				+ ", password=" + password + ", address=" + address + ", orders=" + orders + "]";
 	}
+
+	
 
 }

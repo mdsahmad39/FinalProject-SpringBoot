@@ -7,28 +7,33 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-//@Entity
+@Entity
 public class Store {
 	@Id
 	@GeneratedValue
 	private int storeId;
 	private String storeName;
 	private String sellerName;
-	private Address address;
 	private long phone;
 	private String emailId;
 
 	@Column(unique = true)
 	private String loginId;
 	private String password;
-//
-//	@OneToMany(mappedBy = "store")
-//	List<Items> items = new ArrayList<Items>();
+
+	@OneToOne
+	@JoinColumn(name="address_id")
+	Address address;
 
 	@OneToMany(mappedBy = "store")
-	List<Order> orders = new ArrayList<Order>();
+	List<Product> items = new ArrayList<Product>();
+
+	@OneToMany(mappedBy = "store")
+	List<Orders> orders = new ArrayList<Orders>();
 
 	public Store() {
 		super();
@@ -111,19 +116,19 @@ public class Store {
 		this.password = password;
 	}
 
-	public List<Order> getOrders() {
+	public List<Orders> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(List<Order> orders) {
+	public void setOrders(List<Orders> orders) {
 		this.orders = orders;
 	}
 
 	@Override
 	public String toString() {
-		return "Store [storeId=" + storeId + ", storeName=" + storeName + ", sellerName=" + sellerName + ", address="
-				+ address + ", phone=" + phone + ", emailId=" + emailId + ", loginId=" + loginId + ", password="
-				+ password + ", items="  + ", orders=" + orders + "]";
+		return "Store [storeId=" + storeId + ", storeName=" + storeName + ", sellerName=" + sellerName + ", phone="
+				+ phone + ", emailId=" + emailId + ", loginId=" + loginId + ", password=" + password + ", address="
+				+ address + ", items=" + items + ", orders=" + orders + "]";
 	}
 
 }
