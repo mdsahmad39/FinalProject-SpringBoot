@@ -24,6 +24,7 @@ public class CustomerController {
 	
 	@PostMapping("/register_customer")
 	public void register(@RequestBody String response) {
+		System.out.println(response);
 		response.replaceAll("\"", "");
 		String[] arr = response.split(",");
 		String firstName = arr[0].replaceAll("\"", "").split(":")[1];

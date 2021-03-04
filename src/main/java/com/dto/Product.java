@@ -18,6 +18,8 @@ public class Product {
 	private int productId;
 	private String productName;
 	private String category;
+	//brand
+	//description
 	private double weight;
 	private int availableQuantity;
 	private double price;
