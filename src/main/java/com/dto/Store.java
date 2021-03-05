@@ -5,11 +5,17 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Store {
@@ -30,6 +36,9 @@ public class Store {
 	Address address;
 
 	@OneToMany(mappedBy = "store")
+//	, fetch=FetchType.LAZY
+//	@Fetch(value=FetchMode.SUBSELECT)
+//	@JsonIgnore
 	List<Product> items = new ArrayList<Product>();
 
 	@OneToMany(mappedBy = "store")

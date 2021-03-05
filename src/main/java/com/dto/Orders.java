@@ -32,10 +32,10 @@ public class Orders {
 	@JoinColumn(name = "user_id")
 	Customer customer;
 
-	@OneToMany(mappedBy = "orders", fetch=FetchType.LAZY)
-	@Fetch(value=FetchMode.SUBSELECT)
-	@JsonIgnore
-	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
+//	@OneToMany(mappedBy = "orders", fetch=FetchType.LAZY)
+//	@Fetch(value=FetchMode.SUBSELECT)
+//	@JsonIgnore
+//	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 
 	public Orders() {
 		super();

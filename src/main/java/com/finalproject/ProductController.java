@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RequestMethod;
@@ -71,5 +73,10 @@ public class ProductController //implements ErrorController
 	@RequestMapping("get_products_by_store/{storeId}")
 	public List<Product> getProductsByStore(@PathVariable("storeId") String storeId){
 		return productDao.getProductsByStoreId(storeId);
+	}
+	
+	@PostMapping("updateProduct")
+	public void updateProduct(@RequestBody Product product) {
+		productDao.updateProduct(product);
 	}
 }

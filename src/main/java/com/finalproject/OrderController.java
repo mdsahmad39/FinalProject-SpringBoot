@@ -45,4 +45,9 @@ public class OrderController {
 		OrderDetails orderDetails = new OrderDetails(40, 20, 8000, order, productList.get(0));
 		orderDetailsDao.register(orderDetails);
 	}
+	
+	@RequestMapping("getAllOrders")
+	public List<Orders> getAllOrders() {
+		return orderDao.getAllOrders();
+	}
 }

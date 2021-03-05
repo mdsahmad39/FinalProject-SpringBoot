@@ -24,4 +24,9 @@ public class ProductDao {
 	public List<Product> getProductsByStoreId(String storeId) {
 		return productRepository.findByStoreId(storeId);
 	}
+
+	public void updateProduct(Product product) {
+		productRepository.save(product);
+		
+	}
 }

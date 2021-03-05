@@ -20,4 +20,8 @@ public class OrdersDao {
 	public List<Orders> findAllOrder(){
 		return ordersRepository.findAll();
 	}
+
+	public List<Orders> getAllOrders() {
+		return ordersRepository.findAll();
+	}
 }

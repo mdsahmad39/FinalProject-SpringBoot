@@ -16,7 +16,7 @@ public class OrderDetails {
 	private int purchasedQuantity;
 	private double totalPrice;
 
-	@ManyToOne
+	@OneToOne
 	Orders order;
 
 	@ManyToOne

@@ -22,7 +22,7 @@ public class StoreController {
 	@Autowired
 	AddressDao addressDao;
 	
-	@GetMapping("register_store")
+	@GetMapping("registerStore")
 	public void register() {
 		Address address1 = new Address("3-38", "Gachibowli", "HYD", 342423, "TG", "India");
 		addressDao.register(address1);
@@ -34,7 +34,7 @@ public class StoreController {
 		storeDao.register(store2);
 	}
 	
-	@GetMapping("get_all_stores")
+	@GetMapping("getAllStores")
 	public List<Store> getAllStores(){
 		return storeDao.getAllStores();
 	}
