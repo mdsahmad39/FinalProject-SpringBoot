@@ -2,6 +2,7 @@ package com.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,14 +11,15 @@ import javax.persistence.OneToOne;
 @Entity
 public class OrderDetails {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderDetailsId;
 	private double purchasedWeight;
 	private int purchasedQuantity;
 	private double totalPrice;
 
-	@OneToOne
-	Orders order;
+	@ManyToOne
+	@JoinColumn(name = "orders_id")
+	Orders orders;
 
 	@ManyToOne
 	@JoinColumn(name = "product_id")
@@ -34,7 +36,7 @@ public class OrderDetails {
 		this.purchasedWeight = purchasedWeight;
 		this.purchasedQuantity = purchasedQuantity;
 		this.totalPrice = totalPrice;
-		this.order = order;
+		this.orders = order;
 		this.product = product;
 	}
 
@@ -71,11 +73,11 @@ public class OrderDetails {
 	}
 
 	public Orders getOrder() {
-		return order;
+		return orders;
 	}
 
 	public void setOrder(Orders order) {
-		this.order = order;
+		this.orders = order;
 	}
 
 	public Product getProduct() {
@@ -89,7 +91,7 @@ public class OrderDetails {
 	@Override
 	public String toString() {
 		return "OrderDetails [orderDetailsId=" + orderDetailsId + ", purchasedWeight=" + purchasedWeight
-				+ ", purchasedQuantity=" + purchasedQuantity + ", totalPrice=" + totalPrice + ", order=" + order
+				+ ", purchasedQuantity=" + purchasedQuantity + ", totalPrice=" + totalPrice + ", order=" + orders
 				+ ", product=" + product + "]";
 	}
 

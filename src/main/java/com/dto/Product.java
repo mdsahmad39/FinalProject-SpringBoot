@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,12 +15,12 @@ import javax.persistence.OneToMany;
 @Entity
 public class Product {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
 	private String productName;
 	private String category;
-	//brand
-	//description
+	private String brand;
+	private String description;
 	private double weight;
 	private int availableQuantity;
 	private double price;
@@ -38,11 +39,13 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(String productName, String category, double weight, int availableQuantity, double price,
-			String createdDate, String expiryDate, Store store) {
+	public Product(String productName, String category, String brand, String description, double weight,
+			int availableQuantity, double price, String createdDate, String expiryDate, Store store) {
 		super();
 		this.productName = productName;
 		this.category = category;
+		this.brand = brand;
+		this.description = description;
 		this.weight = weight;
 		this.availableQuantity = availableQuantity;
 		this.price = price;
@@ -73,6 +76,22 @@ public class Product {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public double getWeight() {
@@ -134,9 +153,9 @@ public class Product {
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", category=" + category
-				+ ", weight=" + weight + ", availableQuantity=" + availableQuantity + ", price=" + price
-				+ ", createdDate=" + createdDate + ", expiryDate=" + expiryDate + ", store=" + store + ", orderDetails="
-				+ orderDetails + "]";
+				+ ", brand=" + brand + ", description=" + description + ", weight=" + weight + ", availableQuantity="
+				+ availableQuantity + ", price=" + price + ", createdDate=" + createdDate + ", expiryDate=" + expiryDate
+				+ ", store=" + store + ", orderDetails=" + orderDetails + "]";
 	}
 
 }

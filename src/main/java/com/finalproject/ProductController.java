@@ -56,9 +56,9 @@ public class ProductController //implements ErrorController
 	@GetMapping("register_item")
 	public void register() {
 		List<Store> storeList = storeDao.getAllStores();
-		Product item1 = new Product("Rice", "Kitchen", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(0));
-		Product item2 = new Product("Wheat", "Kitchen", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(1));
-		Product item3 = new Product("Eggs", "Kitchen", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(0));
+		Product item1 = new Product("Rice", "Kitchen","Priya","Fine quality of rice, with refined machinery", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(0));
+		Product item2 = new Product("Wheat", "Kitchen","Symbol","Fine quality of wheat, with refined machinery", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(1));
+		Product item3 = new Product("Eggs", "Kitchen","Amul","Freshly dispatched eggs from hybrid chickens", 10, 20, 200, "12/2/2021", "12/2/2025", storeList.get(0));
 		
 		productDao.register(item1);
 		productDao.register(item2);
@@ -78,5 +78,15 @@ public class ProductController //implements ErrorController
 	@PostMapping("updateProduct")
 	public void updateProduct(@RequestBody Product product) {
 		productDao.updateProduct(product);
+	}
+	
+	@PostMapping("addProduct")
+	public void addProduct(@RequestBody Product product) {
+		productDao.register(product);
+	}
+	
+	@PostMapping("deleteProduct")
+	public void deleteProduct(@RequestBody Product product) {
+		productDao.deleteProduct(product);
 	}
 }

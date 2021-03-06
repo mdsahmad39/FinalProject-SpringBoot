@@ -18,7 +18,7 @@ import com.dto.Product;
 import com.dto.Store;
 
 @RestController
-public class OrderController {
+public class OrdersController {
 
 	@Autowired
 	OrdersDao orderDao;

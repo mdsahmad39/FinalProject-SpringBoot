@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Orders {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int ordersId;
 	private String ordersStatus;
 	private String ordersDate;
@@ -32,10 +33,8 @@ public class Orders {
 	@JoinColumn(name = "user_id")
 	Customer customer;
 
-//	@OneToMany(mappedBy = "orders", fetch=FetchType.LAZY)
-//	@Fetch(value=FetchMode.SUBSELECT)
-//	@JsonIgnore
-//	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
+	@OneToMany(mappedBy = "orders")
+	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 
 	public Orders() {
 		super();
