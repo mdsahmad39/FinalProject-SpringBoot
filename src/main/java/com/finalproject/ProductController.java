@@ -89,4 +89,9 @@ public class ProductController //implements ErrorController
 	public void deleteProduct(@RequestBody Product product) {
 		productDao.deleteProduct(product);
 	}
+	
+	@GetMapping("getProductByName/{productName}")
+	public Product finProductByName(@PathVariable("productName") String productName) {
+		return productDao.findProductByName(productName);
+	}
 }

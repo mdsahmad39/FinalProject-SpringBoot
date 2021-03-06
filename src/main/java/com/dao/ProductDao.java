@@ -33,4 +33,8 @@ public class ProductDao {
 	public void deleteProduct(Product product) {
 		productRepository.delete(product);
 	}
+
+	public Product findProductByName(String productName) {
+		return productRepository.findByProductName(productName);
+	}
 }

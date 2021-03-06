@@ -14,4 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	@Query(value = "SELECT * FROM PRODUCT WHERE STORE_ID = ?1", nativeQuery = true)
 	List<Product> findByStoreId(String storeId);
 
+	Product findByProductName(String productName);
+
 }
