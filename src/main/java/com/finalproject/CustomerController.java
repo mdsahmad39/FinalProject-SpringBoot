@@ -65,4 +65,9 @@ public class CustomerController {
 	public Customer loginUser(@PathVariable("loginId") String loginId, @PathVariable("password") String password) {
 		return customerDao.verifyCustomerInfo(loginId, password);
 	}
+	
+	@PostMapping("/updateCustomer")
+	public void updateCustomer(@RequestBody Customer customer) {
+		customerDao.updateCustomer(customer);
+	}
 }

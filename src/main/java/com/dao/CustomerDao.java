@@ -24,5 +24,9 @@ public class CustomerDao {
 	public List<Customer> getAllCustomers() {
 		return customerRepository.findAll();
 	}
+
+	public void updateCustomer(Customer customer) {
+		customerRepository.save(customer);
+	}
 	
 }
