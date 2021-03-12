@@ -3,6 +3,7 @@ package com.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,16 +25,19 @@ public class Orders {
 	private int ordersId;
 	private String ordersStatus;
 	private String ordersDate;
+//	private String trackNumber;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name = "store_id")
 	Store store;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	Customer customer;
 
-	@OneToMany(mappedBy = "orders")
+	@OneToMany(mappedBy = "orders", fetch=FetchType.LAZY)
+	@Fetch(value=FetchMode.SUBSELECT)
+	@JsonIgnore
 	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 
 	public Orders() {
@@ -41,12 +45,23 @@ public class Orders {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Orders(String orderStatus, String orderDate, Store store, Customer customer) {
+	public Orders(String orderStatus, String orderDate, Store store, Customer customer, List<OrderDetails> orderDetails) {
 		super();
 		this.ordersStatus = orderStatus;
 		this.ordersDate = orderDate;
 		this.store = store;
 		this.customer = customer;
+		this.orderDetails = orderDetails;
+	}
+	
+	
+
+	public List<OrderDetails> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(List<OrderDetails> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 
 	public int getOrderId() {

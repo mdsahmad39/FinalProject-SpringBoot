@@ -3,6 +3,7 @@ package com.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,6 +28,7 @@ public class Store {
 	private String sellerName;
 	private long phone;
 	private String emailId;
+	private boolean status = false;
 
 	@Column(unique = true)
 	private String loginId;
@@ -37,8 +39,7 @@ public class Store {
 	Address address;
 
 	@OneToMany(mappedBy = "store")
-//	, fetch=FetchType.LAZY
-//	@Fetch(value=FetchMode.SUBSELECT)
+	@Fetch(value=FetchMode.SUBSELECT)
 //	@JsonIgnore
 	List<Product> items = new ArrayList<Product>();
 
@@ -60,6 +61,24 @@ public class Store {
 		this.emailId = emailId;
 		this.loginId = loginId;
 		this.password = password;
+	}
+	
+	
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public List<Product> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Product> items) {
+		this.items = items;
 	}
 
 	public int getStoreId() {
@@ -137,8 +156,8 @@ public class Store {
 	@Override
 	public String toString() {
 		return "Store [storeId=" + storeId + ", storeName=" + storeName + ", sellerName=" + sellerName + ", phone="
-				+ phone + ", emailId=" + emailId + ", loginId=" + loginId + ", password=" + password + ", address="
-				+ address + ", items=" + items + ", orders=" + orders + "]";
+				+ phone + ", emailId=" + emailId + ", status=" + status + ", loginId=" + loginId + ", password="
+				+ password + ", address=" + address + ", items=" + items + ", orders=" + orders + "]";
 	}
 
 }

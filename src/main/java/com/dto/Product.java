@@ -1,16 +1,11 @@
 package com.dto;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -31,8 +26,6 @@ public class Product {
 	@JoinColumn(name = "store_id")
 	Store store;
 
-	@OneToMany(mappedBy = "product")
-	List<OrderDetails> orderDetails = new ArrayList<OrderDetails>();
 
 	public Product() {
 		super();
@@ -141,20 +134,12 @@ public class Product {
 		this.store = store;
 	}
 
-	public List<OrderDetails> getOrderDetails() {
-		return orderDetails;
-	}
-
-	public void setOrderDetails(List<OrderDetails> orderDetails) {
-		this.orderDetails = orderDetails;
-	}
-
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", category=" + category
 				+ ", brand=" + brand + ", description=" + description + ", weight=" + weight + ", availableQuantity="
 				+ availableQuantity + ", price=" + price + ", createdDate=" + createdDate + ", expiryDate=" + expiryDate
-				+ ", store=" + store + ", orderDetails=" + orderDetails + "]";
+				+ ", store=" + store + "]";
 	}
 
 }

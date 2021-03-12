@@ -24,4 +24,20 @@ public class StoreDao {
 	public Store verfiyStore(String loginId, String password) {
 		return storeRepository.findByLoginIdAndPassword(loginId, password);
 	}
+
+	public long countStores() {
+		return storeRepository.count();
+	}
+
+	public void updateStoreStatus(Store store) {
+		storeRepository.updateStoreStatus(store);
+	}
+
+	public List<Store> getWorkingStores() {
+		return storeRepository.getWorkingStores();
+	}
+	
+	public List<Store> getNotWorkingStores() {
+		return storeRepository.getNotWorkingStores();
+	}
 }

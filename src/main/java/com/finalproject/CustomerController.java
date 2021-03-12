@@ -61,7 +61,7 @@ public class CustomerController {
 		customerDao.register(customer);
 	}
 	
-	@RequestMapping("/login_customer/{loginId}/{password}")
+	@RequestMapping("/loginCustomer/{loginId}/{password}")
 	public Customer loginUser(@PathVariable("loginId") String loginId, @PathVariable("password") String password) {
 		return customerDao.verifyCustomerInfo(loginId, password);
 	}
@@ -69,5 +69,10 @@ public class CustomerController {
 	@PostMapping("/updateCustomer")
 	public void updateCustomer(@RequestBody Customer customer) {
 		customerDao.updateCustomer(customer);
+	}
+	
+	@PostMapping("/registerCustomer")
+	public void registerCustomer(@RequestBody Customer customer) {
+		customerDao.register(customer);
 	}
 }
